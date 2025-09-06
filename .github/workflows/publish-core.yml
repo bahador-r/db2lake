@@ -36,6 +36,18 @@ jobs:
       - name: Build repository (project references)
         run: npm run build
 
+      - name: Build (verbose)
+        run: npx tsc -b tsconfig.build.json --verbose
+
+      - name: "Debug: list repo"
+        run: |
+          echo "CWD: $(pwd)"
+          ls -la
+          echo "packages/core:"
+          ls -la packages/core || true
+          echo "packages/core/src:"
+          ls -la packages/core/src || true
+
       - name: Publish core
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
