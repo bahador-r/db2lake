@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <img src="../../assets/db2lake-logo240.png" width="200" alt="db2lake logo" />
+  <img src="https://raw.githubusercontent.com/bahador-r/db2lake/master/assets/db2lake-logo240.png" width="200" alt="db2lake logo" />
 </p>
 
 # @db2lake/core
