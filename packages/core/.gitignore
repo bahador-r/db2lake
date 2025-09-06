@@ -3,11 +3,5 @@ lib/
 .DS_Store
 .env
 *.log
-coverage/
-dist/
 .vscode/
-.idea/
-*.ts
-*.map
 package-lock.json
-yarn.lock
