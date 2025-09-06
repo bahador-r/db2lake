@@ -135,12 +135,3 @@ License
 -------
 
 MIT
-
-CI / Publishing
-----------------
-
-Workflows to publish `@db2lake/core` and the driver packages are available in `.github/workflows`.
-
-- To run workflows manually, open the Actions tab in GitHub and select the workflow, or use the `workflow_dispatch` trigger.
-- Ensure the repository secret `NPM_TOKEN` is set to a token with publish rights before running publish workflows.
-

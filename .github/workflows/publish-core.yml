@@ -5,52 +5,36 @@ on:
     branches: [ master ]
     paths:
       - 'packages/core/**'
-      - 'package.json'
-  workflow_dispatch:
-    inputs: {}
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
-  publish-core:
+  publish:
+    name: Build and publish core
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Configure npm auth
+      - name: Install & build core
+        run: |
+          cd packages/core
+          npm ci
+          npm run build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build repository (project references)
-        run: npm run build
-
-      - name: Build (verbose)
-        run: npx tsc -b tsconfig.build.json --verbose
-
-      - name: "Debug: list repo"
-        run: |
-          echo "CWD: $(pwd)"
-          ls -la
-          echo "packages/core:"
-          ls -la packages/core || true
-          echo "packages/core/src:"
-          ls -la packages/core/src || true
-
-      - name: Publish core
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish core to npm
         run: |
           cd packages/core
           npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

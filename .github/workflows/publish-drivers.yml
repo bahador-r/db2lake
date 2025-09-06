@@ -1,54 +1,60 @@
-name: Publish db2lake drivers
+name: Publish drivers
 
 on:
   push:
     branches: [ master ]
     paths:
-      - 'packages/driver-**/**'
-      - 'package.json'
-  workflow_dispatch:
-    inputs: {}
+      - 'packages/driver-*/**'
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   publish-drivers:
+    name: Build and publish drivers
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Configure npm auth
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Find driver packages
+        id: find_packages
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+          echo "PACKAGES<<EOF" > pkglist.txt
+          for d in packages/*; do
+            if [ -f "$d/package.json" ]; then
+              name=$(cat "$d/package.json" | jq -r .name)
+              case "$name" in
+                @db2lake/driver-*) echo "$d";;
+              esac
+            fi
+          done >> pkglist.txt
+          echo "EOF" >> pkglist.txt
+          cat pkglist.txt
 
-      - name: Install workspace deps
-        run: npm ci
-
-      - name: Build repository (project references)
-        run: npm run build
-
-      - name: Find changed driver packages
-        id: changed
+      - name: Publish each driver
         run: |
-          echo "packages=$(git diff --name-only HEAD^ HEAD | grep '^packages/driver-' | awk -F/ '{print $2}' | sort -u | paste -sd, -)" >> $GITHUB_OUTPUT || true
-
-      - name: Build & publish changed drivers
-        if: steps.changed.outputs.packages != ''
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          IFS=',' read -ra pkgs <<< "${{ steps.changed.outputs.packages }}"
-          for p in "${pkgs[@]}"; do
-            echo "Publishing $p"
-            npm run build --workspace=@db2lake/$p
-            (cd packages/$p && npm publish --access public)
+          for d in packages/*; do
+            if [ -f "$d/package.json" ]; then
+              name=$(cat "$d/package.json" | jq -r .name)
+              case "$name" in
+                @db2lake/driver-*)
+                  echo "Publishing $name from $d"
+                  cd "$d"
+                  npm ci
+                  npm run build || true
+                  npm publish --access public || true
+                  cd -
+                  ;;
+              esac
+            fi
           done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
