@@ -21,5 +21,15 @@
       "@db2lake/driver-redshift": ["packages/driver-redshift/src/index.ts"],
       "@db2lake/driver-snowflake": ["packages/driver-snowflake/src/index.ts"]
     }
-  }
+  },
+  "references": [
+    { "path": "packages/core/tsconfig.json" },
+    { "path": "packages/driver-bigquery/tsconfig.json" },
+    { "path": "packages/driver-firestore/tsconfig.json" },
+    { "path": "packages/driver-mysql/tsconfig.json" },
+    { "path": "packages/driver-oracle/tsconfig.json" },
+    { "path": "packages/driver-postgres/tsconfig.json" },
+    { "path": "packages/driver-redshift/tsconfig.json" },
+    { "path": "packages/driver-snowflake/tsconfig.json" }
+  ]
 }
