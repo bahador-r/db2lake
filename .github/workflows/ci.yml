@@ -11,12 +11,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install
         run: npm ci
 
+      - name: Build workspace
+        run: npm run build
+
       - name: Run tests
         run: npx vitest run
+
+      - name: Diagnostic - list core src (for debugging)
+        if: failure()
+        run: ls -la packages/core || true
