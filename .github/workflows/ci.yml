@@ -22,8 +22,11 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build workspace
-        run: npm run build
+      - name: Build core package first
+        run: npm --workspace @db2lake/core run build
+
+      - name: Build remaining packages
+        run: npm --workspaces run build
 
       - name: Run tests
         run: npx vitest run
