@@ -2,7 +2,7 @@ name: Publish db2lake drivers
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master ]
     paths:
       - 'packages/driver-**/**'
       - 'package.json'
