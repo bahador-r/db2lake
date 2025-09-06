@@ -22,8 +22,22 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build core package first
-        run: npm --workspace @db2lake/core run build
+      - name: Diagnostic - show environment and core files
+        run: |
+          echo "PWD: $(pwd)"
+          node -v
+          npm -v
+          npx -v || true
+          tsc -v || true
+          echo '--- packages/core ---'
+          ls -la packages/core || true
+          echo '--- packages/core/src ---'
+          ls -la packages/core/src || true
+          echo '--- packages/core/tsconfig.json ---'
+          cat packages/core/tsconfig.json || true
+
+      - name: Build core package first (root tsc invocation)
+        run: npx tsc -p packages/core/tsconfig.json
 
       - name: Build remaining packages
         run: npm --workspaces run build
