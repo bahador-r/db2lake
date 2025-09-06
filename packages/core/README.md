@@ -31,20 +31,20 @@ Source drivers
 
 | Purpose | Driver | Install | 
 |---|:---|---|
-| MySQL | [`@db2lake/driver-mysql`](https://github.com/bahador-r/@db2lake/driver-mysql) | `npm i @db2lake/driver-mysql` | 
-| Firestore | [`@db2lake/driver-firestore`](https://github.com/bahador-r/@db2lake/driver-firestore) | `npm i @db2lake/driver-firestore` |
-| Postgres | [`@db2lake/driver-postgres`](https://github.com/bahador-r/@db2lake/driver-postgres) | `npm i @db2lake/driver-postgres` | 
-| Oracle | [`@db2lake/driver-oracle`](https://github.com/bahador-r/@db2lake/driver-oracle) | `npm i @db2lake/driver-oracle` | 
+| MySQL | [`@db2lake/driver-mysql`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-mysql) | `npm i @db2lake/driver-mysql` | 
+| Firestore | [`@db2lake/driver-firestore`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-firestore) | `npm i @db2lake/driver-firestore` |
+| Postgres | [`@db2lake/driver-postgres`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-postgres) | `npm i @db2lake/driver-postgres` | 
+| Oracle | [`@db2lake/driver-oracle`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-oracle) | `npm i @db2lake/driver-oracle` | 
 
 Destination drivers
 -------------------
 
 | Purpose | Driver | Install | 
 |---|:---|---|
-| BigQuery | [`@db2lake/driver-bigquery`](https://github.com/bahador-r/@db2lake/driver-bigquery) | `npm i @db2lake/driver-bigquery` | 
-| Databricks | [`@db2lake/driver-databricks`](https://github.com/bahador-r/@db2lake/driver-databricks) | `npm i @db2lake/driver-databricks` |
-| Redshift | [`@db2lake/driver-redshift`](https://github.com/bahador-r/@db2lake/driver-redshift) | `npm i @db2lake/driver-redshift` | 
-| Snowflake | [`@db2lake/driver-snowflake`](https://github.com/bahador-r/@db2lake/driver-snowflake) | `npm i @db2lake/driver-snowflake` | 
+| BigQuery | [`@db2lake/driver-bigquery`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-bigquery) | `npm i @db2lake/driver-bigquery` | 
+| Databricks | [`@db2lake/driver-databricks`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-databricks) | `npm i @db2lake/driver-databricks` |
+| Redshift | [`@db2lake/driver-redshift`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-redshift) | `npm i @db2lake/driver-redshift` | 
+| Snowflake | [`@db2lake/driver-snowflake`](https://github.com/bahador-r/db2lake/tree/master/packages/driver-snowflake) | `npm i @db2lake/driver-snowflake` | 
 
 Quick install example
 ---------------------
