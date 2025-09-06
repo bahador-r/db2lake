@@ -25,19 +25,33 @@ jobs:
       - name: Diagnostic - show environment and core files
         run: |
           echo "PWD: $(pwd)"
+          echo '--- node/npm versions ---'
           node -v
           npm -v
           npx -v || true
+          echo '--- tsc version ---'
           tsc -v || true
-          echo '--- packages/core ---'
+
+          echo '--- git status ---'
+          git status --porcelain || true
+          echo '--- git ls-files (root, show up to 200 lines) ---'
+          git ls-files | sed -n '1,200p' || true
+
+          echo '--- files under packages/core ---'
           ls -la packages/core || true
-          echo '--- packages/core/src ---'
+          echo '--- files under packages/core/src ---'
           ls -la packages/core/src || true
+          echo '--- first 200 lines of packages/core/src files (names) ---'
+          for f in packages/core/src/*; do echo "FILE: $f"; sed -n '1,200p' "$f" || true; done
           echo '--- packages/core/tsconfig.json ---'
           cat packages/core/tsconfig.json || true
+          echo '--- show staged/committed tree entry for tsconfig ---'
+          git show HEAD:packages/core/tsconfig.json || true
 
-      - name: Build core package first (root tsc invocation)
-        run: npx tsc -p packages/core/tsconfig.json
+      - name: Build core package first (package-relative tsc)
+        run: |
+          cd packages/core
+          npx tsc -p tsconfig.json
 
       - name: Build remaining packages
         run: npm --workspaces run build
