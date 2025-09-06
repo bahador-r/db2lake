@@ -9,6 +9,17 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "lib"
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": {
+      "@db2lake/core": ["packages/core/src/index.ts"],
+      "@db2lake/driver-bigquery": ["packages/driver-bigquery/src/index.ts"],
+      "@db2lake/driver-firestore": ["packages/driver-firestore/src/index.ts"],
+      "@db2lake/driver-mysql": ["packages/driver-mysql/src/index.ts"],
+      "@db2lake/driver-oracle": ["packages/driver-oracle/src/index.ts"],
+      "@db2lake/driver-postgres": ["packages/driver-postgres/src/index.ts"],
+      "@db2lake/driver-redshift": ["packages/driver-redshift/src/index.ts"],
+      "@db2lake/driver-snowflake": ["packages/driver-snowflake/src/index.ts"]
+    }
   }
 }
