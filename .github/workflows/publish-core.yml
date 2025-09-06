@@ -31,8 +31,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build core workspace
-        run: npm run build --workspace=@db2lake/core
+      - name: Build repository (project references)
+        run: npm run build
 
       - name: Publish core
         env:
