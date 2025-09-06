@@ -2,10 +2,12 @@ name: Publish db2lake drivers
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
     paths:
       - 'packages/driver-**/**'
       - 'package.json'
+  workflow_dispatch:
+    inputs: {}
 
 jobs:
   publish-drivers:

@@ -2,10 +2,12 @@ name: Publish @db2lake/core
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
     paths:
       - 'packages/core/**'
       - 'package.json'
+  workflow_dispatch:
+    inputs: {}
 
 jobs:
   publish-core:
