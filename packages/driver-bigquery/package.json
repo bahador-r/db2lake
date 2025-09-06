@@ -1,6 +1,6 @@
 {
     "name": "@db2lake/driver-bigquery",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": false,
     "description": "BigQuery destination driver for db2lake",
     "main": "lib/index.js",
