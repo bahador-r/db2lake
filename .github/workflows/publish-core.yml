@@ -5,35 +5,38 @@ on:
     branches: [ master ]
     paths:
       - 'packages/core/**'
-
-permissions:
-  contents: read
-  packages: write
+      - 'package.json'
 
 jobs:
-  publish:
-    name: Build and publish core
+  publish-core:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies and build (root)
-        run: |
-          npm ci
-          npm run build
+      - name: Configure npm auth
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
 
-      - name: Publish core to npm
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build core workspace
+        run: npm run build --workspace=@db2lake/core
+
+      - name: Publish core
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd packages/core
           npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

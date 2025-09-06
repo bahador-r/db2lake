@@ -10,9 +10,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "lib",
-    "baseUrl": ".",
-    "paths": {
-      "@db2lake/core": ["packages/core/src"]
-    }
+  "baseUrl": "."
   }
 }
