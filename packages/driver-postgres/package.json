@@ -1,0 +1,53 @@
+{
+    "name": "@db2lake/driver-postgres",
+    "version": "0.1.0",
+    "private": false,
+    "description": "Postgres source driver for db2lake",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib"
+    ],
+    "keywords": [
+        "database",
+        "lakehouse",
+        "warehouse",
+        "lake",
+        "etl",
+        "data-pipeline",
+        "data-engineering",
+        "data-integration",
+        "data-migration",
+        "data-sync",
+        "data-transfer",
+        "data-warehouse",
+        "data-lake",
+        "bigquery",
+        "redshift",
+        "snowflake",
+        "databricks",
+        "mysql",
+        "postgres",
+        "oracle",
+        "firestore"
+    ],
+    "author": "Bahador Raghibizadeh",
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "clean": "rm -rf lib",
+        "prepublishOnly": "npm run build"
+    },
+    "dependencies": {
+        "@db2lake/core": "^0.1.0",
+        "@types/pg": "^8.15.5",
+        "pg": "^8.16.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bahador-r/@db2lake.git"
+    },
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    }
+}

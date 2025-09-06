@@ -1,0 +1,23 @@
+# Root .npmignore (helps avoid publishing repo root if accidentally published)
+# Most package publishing is done from each package folder; package-level
+# `files` in package.json control what is published. This file is defensive.
+
+node_modules/
+.pnp/
+.pnp.js
+.git/
+.github/
+.vscode/
+.idea/
+coverage/
+dist/
+src/
+tests/
+examples/
+*.log
+.env
+*.ts
+*.map
+tsconfig.json
+package-lock.json
+yarn.lock

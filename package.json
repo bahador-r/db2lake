@@ -1,0 +1,24 @@
+{
+  "name": "db2lake-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "description": "Monorepo for @db2lake scoped packages",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bahador-r/@db2lake.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "npm --workspaces run build",
+    "clean": "npm --workspaces run clean",
+    "test": "vitest"
+  }
+  ,"devDependencies": {
+    "typescript": "^5.2.2",
+    "vitest": "^1.3.0"
+  }
+  
+}
