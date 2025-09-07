@@ -1,6 +1,6 @@
 {
     "name": "@db2lake/driver-snowflake",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "private": false,
     "description": "Snowflake destination driver for db2lake",
     "main": "lib/index.js",

@@ -24,6 +24,12 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install & build core
+        run: |
+          cd packages/core
+          npm ci
+          npm run build
+
       - name: Find driver packages
         id: find_packages
         run: |
