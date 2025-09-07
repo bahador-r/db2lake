@@ -1,6 +1,6 @@
 {
     "name": "@db2lake/driver-oracle",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "private": false,
     "description": "Oracle source driver for db2lake",
     "main": "lib/index.js",

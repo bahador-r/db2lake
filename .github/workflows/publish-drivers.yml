@@ -41,9 +41,10 @@ jobs:
 
       - name: Publish each driver
         run: |
-          cd packages/core
-          npm ci
-          npm run build
+          if [ -f "packages/core/package.json" ]; then
+            echo "Building @db2lake/core"
+            (cd packages/core && npm ci && npm run build) || true
+          fi
           for d in packages/*; do
             if [ -f "$d/package.json" ]; then
               name=$(cat "$d/package.json" | jq -r .name)
