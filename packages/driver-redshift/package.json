@@ -45,7 +45,7 @@
         "vitest": "^1.3.0"
     },
     "dependencies": {
-        "@db2lake/core": "file:../core/src",
+        "@db2lake/core": "^0.1.4",
         "@types/pg": "^8.10.3",
         "pg": "^8.11.3"
     },
