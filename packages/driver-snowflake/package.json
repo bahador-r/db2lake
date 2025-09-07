@@ -45,7 +45,7 @@
         "vitest": "^1.3.0"
     },
     "dependencies": {
-        "@db2lake/core": "workspace:*",
+        "@db2lake/core": "file:../core/src",
         "snowflake-sdk": "^2.2.0"
     },
     "repository": {

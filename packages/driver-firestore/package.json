@@ -45,7 +45,7 @@
         "vitest": "^1.3.0"
     },
     "dependencies": {
-        "@db2lake/core": "workspace:*",
+        "@db2lake/core": "file:../core/src",
         "firebase-admin": "^11.10.1"
     },
     "repository": {
