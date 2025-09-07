@@ -9,27 +9,6 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "lib",
-    "baseUrl": ".",
-    "paths": {
-      "@db2lake/core": ["packages/core/src/index.ts"],
-      "@db2lake/driver-bigquery": ["packages/driver-bigquery/src/index.ts"],
-      "@db2lake/driver-firestore": ["packages/driver-firestore/src/index.ts"],
-      "@db2lake/driver-mysql": ["packages/driver-mysql/src/index.ts"],
-      "@db2lake/driver-oracle": ["packages/driver-oracle/src/index.ts"],
-      "@db2lake/driver-postgres": ["packages/driver-postgres/src/index.ts"],
-      "@db2lake/driver-redshift": ["packages/driver-redshift/src/index.ts"],
-      "@db2lake/driver-snowflake": ["packages/driver-snowflake/src/index.ts"]
-    }
-  },
-  "references": [
-    { "path": "packages/core/tsconfig.json" },
-    { "path": "packages/driver-bigquery/tsconfig.json" },
-    { "path": "packages/driver-firestore/tsconfig.json" },
-    { "path": "packages/driver-mysql/tsconfig.json" },
-    { "path": "packages/driver-oracle/tsconfig.json" },
-    { "path": "packages/driver-postgres/tsconfig.json" },
-    { "path": "packages/driver-redshift/tsconfig.json" },
-    { "path": "packages/driver-snowflake/tsconfig.json" }
-  ]
+    "outDir": "lib"
+  }
 }

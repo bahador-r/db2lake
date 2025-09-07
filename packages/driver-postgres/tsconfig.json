@@ -2,8 +2,12 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib"
+    "outDir": "lib",
+    "composite": true
   },
   "include": ["src"],
-  "exclude": ["lib", "node_modules", "src/**/*.test.ts", "src/**/*.spec.ts"]
+  "exclude": ["lib", "node_modules", "src/**/*.test.ts", "src/**/*.spec.ts"],
+  "references": [
+    { "path": "../core" }
+  ]
 }
