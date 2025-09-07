@@ -52,9 +52,9 @@ jobs:
                 @db2lake/driver-*)
                   echo "Publishing $name from $d"
                   cd "$d"
-                  npm install
-                  npm run build || true
-                  npm publish --access public || true
+                  yarn install
+                  yarn build || true
+                  yarn publish --access public || true
                   cd -
                   ;;
               esac
