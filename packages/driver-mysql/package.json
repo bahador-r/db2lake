@@ -45,7 +45,7 @@
         "vitest": "^1.3.0"
     },
     "dependencies": {
-        "@db2lake/core": "^0.1.3",
+        "@db2lake/core": "workspace:*",
         "mysql2": "^3.14.3"
     },
     "repository": {
