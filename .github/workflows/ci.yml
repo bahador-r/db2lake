@@ -19,6 +19,9 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Setup pnpm and install
+        uses: pnpm/action-setup@v4
+
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
