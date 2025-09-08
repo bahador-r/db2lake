@@ -109,6 +109,12 @@ jobs:
             fi
           done
 
+      - name: Clean TypeScript incremental state
+        run: npx -y tsc -b --clean || true
+
+      - name: Remove TypeScript buildinfo
+        run: find . -type f -name 'tsconfig.tsbuildinfo' -print -delete || true
+
       - name: Publish each driver
         run: |
           for d in packages/*; do
