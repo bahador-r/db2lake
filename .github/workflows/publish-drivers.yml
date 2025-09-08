@@ -31,7 +31,11 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build core (ensure declarations)
-        run: npx -y tsc -b packages/core/tsconfig.json
+        run: |
+          # Clean any stale compiled output to avoid maps without matching .d.ts
+          rm -rf packages/core/lib || true
+          rm -rf node_modules/@db2lake/core || true
+          npx -y tsc -b packages/core/tsconfig.json
 
       - name: Build core and compile drivers sequentially
         run: |
@@ -47,8 +51,23 @@ jobs:
           ls -la packages/core/lib || true
           echo "--- node_modules/@db2lake/core contents ---"
           ls -la node_modules/@db2lake/core || true
-          if [ ! -f "packages/core/lib/index.d.ts" ]; then
-            echo "ERROR: core declarations not found: packages/core/lib/index.d.ts" >&2
+          # If declarations are missing, attempt a declaration-only emit and re-copy
+          if [ ! -f "packages/core/lib/index.d.ts" ] || [ ! -f "node_modules/@db2lake/core/index.d.ts" ]; then
+            echo "WARN: core declarations missing; attempting declaration-only emit"
+            # Try a focused declaration emit (doesn't overwrite JS outputs) and re-copy
+            npx -y tsc -p packages/core/tsconfig.json --emitDeclarationOnly || true
+            mkdir -p node_modules/@db2lake/core
+            cp -R packages/core/lib/* node_modules/@db2lake/core/ || true
+
+            echo "--- packages/core/lib contents (after emitDeclarationOnly) ---"
+            ls -la packages/core/lib || true
+            echo "--- node_modules/@db2lake/core contents (after emitDeclarationOnly) ---"
+            ls -la node_modules/@db2lake/core || true
+          fi
+
+          # Final check: require declarations in both the package lib and the node_modules copy
+          if [ ! -f "packages/core/lib/index.d.ts" ] || [ ! -f "node_modules/@db2lake/core/index.d.ts" ]; then
+            echo "ERROR: core declarations not found after retry: packages/core/lib/index.d.ts or node_modules/@db2lake/core/index.d.ts" >&2
             exit 2
           fi
 

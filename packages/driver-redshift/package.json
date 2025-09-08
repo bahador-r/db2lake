@@ -1,6 +1,6 @@
 {
     "name": "@db2lake/driver-redshift",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "private": false,
     "description": "RedShift destination driver for db2lake",
     "main": "lib/index.js",
