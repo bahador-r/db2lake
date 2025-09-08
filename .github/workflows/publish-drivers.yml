@@ -42,6 +42,16 @@ jobs:
           mkdir -p node_modules/@db2lake/core
           cp -R packages/core/lib/* node_modules/@db2lake/core/ || true
 
+          # Debug: show core lib and node_modules copy (fail if missing)
+          echo "--- packages/core/lib contents ---"
+          ls -la packages/core/lib || true
+          echo "--- node_modules/@db2lake/core contents ---"
+          ls -la node_modules/@db2lake/core || true
+          if [ ! -f "packages/core/lib/index.d.ts" ]; then
+            echo "ERROR: core declarations not found: packages/core/lib/index.d.ts" >&2
+            exit 2
+          fi
+
           # Build each driver sequentially to avoid composite build ordering issues
           for d in packages/*; do
             if [ -f "$d/package.json" ]; then
