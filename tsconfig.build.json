@@ -7,6 +7,8 @@
     { "path": "./packages/driver-oracle" },
     { "path": "./packages/driver-postgres" },
     { "path": "./packages/driver-redshift" },
-    { "path": "./packages/driver-snowflake" }
+    { "path": "./packages/driver-snowflake" },
+    { "path": "./packages/driver-databricks" },
+    { "path": "./packages/driver-firestore" }
   ]
 }
