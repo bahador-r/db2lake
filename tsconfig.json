@@ -9,17 +9,18 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "lib",
-    "moduleResolution": "node"
+    "outDir": "lib"
   },
-  "workspace": true,
-  "references": [
-    { "path": "./packages/core" },
-    { "path": "./packages/driver-bigquery" },
-    { "path": "./packages/driver-mysql" },
-    { "path": "./packages/driver-oracle" },
-    { "path": "./packages/driver-postgres" },     
-    { "path": "./packages/driver-redshift" },
-    { "path": "./packages/driver-snowflake" }
+  "private": true,
+  "workspaces": [
+    "packages/core",
+    "packages/driver-mysql",
+    "packages/driver-postgres",
+    "packages/driver-snowflake",
+    "packages/driver-redshift",        
+    "packages/driver-bigquery",
+    "packages/driver-oracle",        
+    "packages/driver-sqlserver",
+    "packages/driver-databricks"
   ]
 }
