@@ -37,8 +37,12 @@ jobs:
       - name: Install workspace dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build (ordered)
-        run: pnpm run build:ordered
+      - name: Clean workspace and Build (ordered)
+        run: |
+          # Clean any previous build outputs across the workspace
+          pnpm -w -s -r run clean || true
+          # Run a fresh composite build
+          pnpm run build:ordered
 
       - name: Publish core to npm
         run: |
