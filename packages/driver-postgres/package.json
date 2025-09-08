@@ -1,6 +1,6 @@
 {
     "name": "@db2lake/driver-postgres",
-    "version": "0.1.4",
+    "version": "0.1.3",
     "private": false,
     "description": "Postgres source driver for db2lake",
     "main": "lib/index.js",
