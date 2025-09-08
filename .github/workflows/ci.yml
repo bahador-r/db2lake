@@ -27,16 +27,15 @@ jobs:
 
       - name: Build workspace
         run: /
-          cd packages/core
-          npx -y tsc -b tsconfig.json --clean
-          npx -y tsc -b tsconfig.json
-          cd ../../
+          npx -y tsc -b packages/core/tsconfig.json --clean
+          npx -y tsc -b packages/core/tsconfig.json
+          
           for d in packages/*; do
             if [ -f "$d/package.json" ]; then
               name=$(jq -r .name "$d/package.json")
               case "$name" in
                 @db2lake/driver-*)
-                  echo "Publishing $name from $d"
+                  echo "Building $name from $d"
                   cd "$d"
                   npx -y tsc -b tsconfig.json --clean
                   npx -y tsc -b tsconfig.json
