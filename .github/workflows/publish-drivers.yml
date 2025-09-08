@@ -13,16 +13,23 @@ permissions:
 jobs:
   publish-drivers:
     name: Build and publish drivers
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Find driver packages
         id: find_packages
@@ -48,9 +55,9 @@ jobs:
                 @db2lake/driver-*)
                   echo "Publishing $name from $d"
                   cd "$d"
-                  npm install --workspaces
-                  npm run build || true
-                  npm publish --access public || true
+                  pnpm install
+                  pnpm run build || true
+                  pnpm publish --access public || true
                   cd -
                   ;;
               esac
