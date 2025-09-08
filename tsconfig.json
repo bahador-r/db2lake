@@ -11,16 +11,14 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "lib"
   },
-  "private": true,
-  "workspaces": [
-    "packages/core",
-    "packages/driver-mysql",
-    "packages/driver-postgres",
-    "packages/driver-snowflake",
-    "packages/driver-redshift",        
-    "packages/driver-bigquery",
-    "packages/driver-oracle",        
-    "packages/driver-sqlserver",
-    "packages/driver-databricks"
+  "files": [],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/driver-bigquery" },
+    { "path": "./packages/driver-mysql" },
+    { "path": "./packages/driver-oracle" },
+    { "path": "./packages/driver-postgres" },     
+    { "path": "./packages/driver-redshift" },
+    { "path": "./packages/driver-snowflake" }
   ]
 }
