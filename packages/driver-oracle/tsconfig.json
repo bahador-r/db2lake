@@ -7,5 +7,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true
   },
+  "references": [
+    { "path": "../core" }
+  ],
   "include": ["src"]
 }
