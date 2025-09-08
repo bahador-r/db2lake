@@ -8,7 +8,7 @@
   "description": "Monorepo for @db2lake scoped packages",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bahador-r/@db2lake.git"
+    "url": "https://github.com/bahador-r/db2lake.git"
   },
   "license": "MIT",
   "scripts": {
