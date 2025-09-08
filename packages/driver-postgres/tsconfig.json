@@ -1,13 +1,13 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
     "composite": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "include": ["src"],
-  "exclude": ["lib", "node_modules", "src/**/*.test.ts", "src/**/*.spec.ts"],
   "references": [
     { "path": "../core" }
   ]

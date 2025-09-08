@@ -5,7 +5,7 @@
     { "path": "./packages/driver-bigquery" },
     { "path": "./packages/driver-mysql" },
     { "path": "./packages/driver-oracle" },
-    { "path": "./packages/driver-postgres" },     
+    { "path": "./packages/driver-postgres" },
     { "path": "./packages/driver-redshift" },
     { "path": "./packages/driver-snowflake" }
   ]

@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: Build (ordered)
+        run: pnpm run build:ordered
+
       - name: Publish each driver
         run: |
           for d in packages/*; do

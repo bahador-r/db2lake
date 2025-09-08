@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+  "target": "ES2020",
+    "module": "CommonJS",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node16",
+    "baseUrl": ".",
+    "paths": {
+      "@db2lake/core": ["packages/core/src"],
+      "@db2lake/*": ["packages/*/src"]
+    },
+    "outDir": "lib"
+  }
+}

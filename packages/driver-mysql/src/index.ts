@@ -94,7 +94,11 @@ export class MySQLSourceDriver implements IMySQLDriver {
      * Establishes a connection to the MySQL database using config options or URI.
      */
     async connect(): Promise<void> {       
-        this.connection = await createConnection(this.config.connectionOptions || this.config.connectionUri);
+        if (typeof this.config.connectionUri === 'string' && !this.config.connectionOptions) {
+            this.connection = await createConnection(this.config.connectionUri);
+        } else {
+            this.connection = await createConnection(this.config.connectionOptions as any);
+        }
     }
 }
 

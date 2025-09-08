@@ -31,13 +31,16 @@ jobs:
         run: ls -l ../../tsconfig.json
         working-directory: packages/core
 
-      - name: Install & build core
-        run: |
-          cd packages/core
-          npm ci
-          npm run build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Setup pnpm and install
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install workspace dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build (ordered)
+        run: pnpm run build:ordered
 
       - name: Publish core to npm
         run: |
