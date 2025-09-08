@@ -35,11 +35,13 @@ jobs:
           # Clean any stale compiled output to avoid maps without matching .d.ts
           rm -rf packages/core/lib || true
           rm -rf node_modules/@db2lake/core || true
+          npx -y tsc -b packages/core/tsconfig.json --clean
           npx -y tsc -b packages/core/tsconfig.json
 
       - name: Build core and compile drivers sequentially
         run: |
           # Ensure core is built and declarations emitted
+          npx -y tsc -b packages/core/tsconfig.json --clean
           npx -y tsc -b packages/core/tsconfig.json
 
           # Make compiled core available under node_modules so drivers resolve declarations
@@ -55,6 +57,7 @@ jobs:
           if [ ! -f "packages/core/lib/index.d.ts" ] || [ ! -f "node_modules/@db2lake/core/index.d.ts" ]; then
             echo "WARN: core declarations missing; attempting declaration-only emit"
             # Try a focused declaration emit (doesn't overwrite JS outputs) and re-copy
+            npx -y tsc -b packages/core/tsconfig.json --clean
             npx -y tsc -p packages/core/tsconfig.json --emitDeclarationOnly || true
             mkdir -p node_modules/@db2lake/core
             cp -R packages/core/lib/* node_modules/@db2lake/core/ || true
@@ -124,6 +127,8 @@ jobs:
                 @db2lake/driver-*)
                   echo "Publishing $name from $d"
                   cd "$d"
+                  npx -y tsc -b tsconfig.json --clean
+                  npx -y tsc -b tsconfig.json
                   # build and fail on error
                   pnpm build
                   # ensure declarations exist

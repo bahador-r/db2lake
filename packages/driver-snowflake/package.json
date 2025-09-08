@@ -2,7 +2,7 @@
     "name": "@db2lake/driver-snowflake",
     "version": "0.1.9",
     "private": false,
-    "description": "Snowflake destination driver for db2lake.",
+    "description": "Snowflake destination driver for db2lake",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
