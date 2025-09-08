@@ -118,8 +118,15 @@ jobs:
                 @db2lake/driver-*)
                   echo "Publishing $name from $d"
                   cd "$d"
-                  pnpm build || true
-                  pnpm publish --access public --no-git-checks || true
+                  # build and fail on error
+                  pnpm build
+                  # ensure declarations exist
+                  if [ ! -f "lib/index.d.ts" ]; then
+                    echo "ERROR: declarations missing for $name (lib/index.d.ts)" >&2
+                    exit 1
+                  fi
+                  # publish and fail on error
+                  pnpm publish --access public --no-git-checks
                   cd -
                   ;;
               esac
