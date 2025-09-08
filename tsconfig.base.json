@@ -12,8 +12,8 @@
     "moduleResolution": "node16",
     "baseUrl": ".",
     "paths": {
-      "@db2lake/core": ["packages/core/src"],
-      "@db2lake/*": ["packages/*/src"]
+      "@db2lake/core": ["packages/core/lib", "packages/core/src"],
+      "@db2lake/*": ["packages/*/lib", "packages/*/src"]
     },
     "outDir": "lib"
   }
