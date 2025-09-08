@@ -38,6 +38,10 @@ jobs:
           # Ensure core is built and declarations emitted
           npx -y tsc -b packages/core/tsconfig.json
 
+          # Make compiled core available under node_modules so drivers resolve declarations
+          mkdir -p node_modules/@db2lake/core
+          cp -R packages/core/lib/* node_modules/@db2lake/core/ || true
+
           # Build each driver sequentially to avoid composite build ordering issues
           for d in packages/*; do
             if [ -f "$d/package.json" ]; then
