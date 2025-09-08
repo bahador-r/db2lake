@@ -33,8 +33,23 @@ jobs:
       - name: Build core (ensure declarations)
         run: npx -y tsc -b packages/core/tsconfig.json
 
-      - name: Build (ordered)
-        run: pnpm run build:ordered
+      - name: Build core and compile drivers sequentially
+        run: |
+          # Ensure core is built and declarations emitted
+          npx -y tsc -b packages/core/tsconfig.json
+
+          # Build each driver sequentially to avoid composite build ordering issues
+          for d in packages/*; do
+            if [ -f "$d/package.json" ]; then
+              name=$(jq -r .name "$d/package.json")
+              case "$name" in
+                @db2lake/driver-*)
+                  echo "Building $name"
+                  npx -y tsc -p "$d/tsconfig.json"
+                  ;;
+              esac
+            fi
+          done
 
       - name: Publish each driver
         run: |
