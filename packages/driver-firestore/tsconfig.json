@@ -5,7 +5,8 @@
     "outDir": "lib",
     "composite": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "declaration": true
   },
   "references": [
     { "path": "../core" }
