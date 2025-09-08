@@ -24,33 +24,25 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Find driver packages
-        id: find_packages
-        run: |
-          echo "PACKAGES<<EOF" > pkglist.txt
-          for d in packages/*; do
-            if [ -f "$d/package.json" ]; then
-              name=$(cat "$d/package.json" | jq -r .name)
-              case "$name" in
-                @db2lake/driver-*) echo "$d";;
-              esac
-            fi
-          done >> pkglist.txt
-          echo "EOF" >> pkglist.txt
-          cat pkglist.txt
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Publish each driver
         run: |
           for d in packages/*; do
             if [ -f "$d/package.json" ]; then
-              name=$(cat "$d/package.json" | jq -r .name)
+              name=$(jq -r .name "$d/package.json")
               case "$name" in
                 @db2lake/driver-*)
                   echo "Publishing $name from $d"
                   cd "$d"
-                  npm ci
-                  npm run build || true
-                  npm publish --access public || true
+                  pnpm build || true
+                  pnpm publish --access public --no-git-checks || true
                   cd -
                   ;;
               esac
