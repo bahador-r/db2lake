@@ -26,7 +26,25 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build workspace
-        run: pnpm run build
+        run: /
+          cd packages/core
+          npx -y tsc -b tsconfig.json --clean
+          npx -y tsc -b tsconfig.json
+          cd ../../
+          for d in packages/*; do
+            if [ -f "$d/package.json" ]; then
+              name=$(jq -r .name "$d/package.json")
+              case "$name" in
+                @db2lake/driver-*)
+                  echo "Publishing $name from $d"
+                  cd "$d"
+                  npx -y tsc -b tsconfig.json --clean
+                  npx -y tsc -b tsconfig.json
+                  cd -
+                  ;;
+              esac
+            fi
+          done
 
       - name: Run tests
         run: npx vitest run
