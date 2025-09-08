@@ -1,6 +1,6 @@
 {
     "name": "@db2lake/driver-mysql",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "private": false,
     "description": "MySQL source driver for db2lake",
     "main": "lib/index.js",
