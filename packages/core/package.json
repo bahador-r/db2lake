@@ -2,7 +2,7 @@
     "name": "@db2lake/core",
     "version": "0.1.5",
     "private": false,
-    "description": "Core interfaces and utilities for db2lake",
+    "description": "Core interfaces and utilities for db2lake.",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
