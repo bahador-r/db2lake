@@ -48,7 +48,7 @@ jobs:
                 @db2lake/driver-*)
                   echo "Publishing $name from $d"
                   cd "$d"
-                  npm ci
+                  npm install --workspaces
                   npm run build || true
                   npm publish --access public || true
                   cd -
