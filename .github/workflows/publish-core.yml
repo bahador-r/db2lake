@@ -33,8 +33,6 @@ jobs:
 
       - name: Setup pnpm and install
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Install workspace dependencies
         run: pnpm install --no-frozen-lockfile
