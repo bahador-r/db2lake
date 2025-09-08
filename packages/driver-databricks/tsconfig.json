@@ -4,7 +4,6 @@
     "rootDir": "src",
     "outDir": "lib",
     "composite": true,
-    "noImplicitAny": true,
     "moduleResolution": "node"
   },
   "include": ["src"],
