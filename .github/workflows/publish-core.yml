@@ -37,12 +37,20 @@ jobs:
       - name: Install workspace dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Clean workspace and Build (ordered)
-        run: |
-          # Clean any previous build outputs across the workspace
-          pnpm -w -s -r run clean || true
-          # Run a fresh composite build
-          pnpm run build:ordered
+      - name: Clean workspace
+        run: pnpm -w -s -r run clean || true
+
+      - name: Remove incremental tsbuildinfo
+        run: find . -type f -name 'tsconfig.tsbuildinfo' -print -delete || true
+
+      - name: Explicitly build core first
+        run: npx -y tsc -b packages/core/tsconfig.json
+
+      - name: Build (ordered)
+        run: pnpm run build:ordered
+
+      - name: Show core lib contents
+        run: ls -la packages/core/lib || true
 
       - name: Publish core to npm
         run: |
