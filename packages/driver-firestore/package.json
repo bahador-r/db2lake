@@ -1,8 +1,9 @@
 {
     "name": "@db2lake/driver-firestore",
-    "version": "0.1.9",
+    "version": "0.2.0",
     "private": false,
     "description": "Firestore source driver for db2lake",
+    "bugs": "https://github.com/bahador-r/db2lake/issues",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [

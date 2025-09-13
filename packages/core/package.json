@@ -1,8 +1,10 @@
 {
     "name": "@db2lake/core",
-    "version": "0.1.9",
+    "version": "0.2.0",
     "private": false,
     "description": "Core interfaces and utilities for db2lake",
+    "bugs": "https://github.com/bahador-r/db2lake/issues",
+    "homepage": "https://github.com/bahador-r/db2lake#readme",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [

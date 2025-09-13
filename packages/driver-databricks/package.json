@@ -1,8 +1,9 @@
 {
     "name": "@db2lake/driver-databricks",
-    "version": "0.1.9",
+    "version": "0.2.0",
     "private": false,
     "description": "DataBricks destination driver for db2lake",
+    "bugs": "https://github.com/bahador-r/db2lake/issues",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
@@ -45,7 +46,7 @@
         "vitest": "^1.3.0"
     },
     "dependencies": {
-        "@db2lake/core": "workspace:*", 
+        "@db2lake/core": "workspace:*",
         "@databricks/sql": "^1.11.0"
     },
     "repository": {

@@ -17,6 +17,10 @@ using cursor information so that only new data is transferred on subsequent runs
 This repository is a monorepo that includes the `core` package plus multiple
 source and destination drivers.
 
+Learn more about db2lake in our post on Dev.to:
+[Introducing db2lake: A Lightweight and Powerful ETL Framework for Node.js](https://dev.to/bahador_r/introducing-db2lake-a-lightweight-and-powerful-etl-framework-for-nodejs-12b6)
+
+
 Install
 -------
 
